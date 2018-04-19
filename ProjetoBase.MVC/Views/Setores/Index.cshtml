@@ -1,0 +1,60 @@
+@{
+    ViewData["Title"] = "Index";
+}
+<h2>Setores</h2>
+
+<button type="button" class="btn btn-primary" onclick="carregaCreate()">Criar novo setor</button>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div id="mensagem"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div id="formularios"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div id="lista"></div>
+    </div>
+</div>
+
+@section scripts{
+<script>
+    $(document).ready(function () {
+        lista()
+    });
+
+    function createSetor() {
+        var objeto = $("#formCreate").serialize();
+        $.ajax({
+            url: "Setores/Create",
+            type: "POST",
+            data: objeto,
+            datatype: "json",
+            success: function (data) {
+                console.log(data)
+                if (data.mensagemSucesso != undefined) {
+                    lista();
+                    $("#mensagem").html(data.mensagemSucesso);
+                } else {
+                    $("#mensagem").html(data.mensagemErro);
+                }
+            }
+        });
+    }
+
+    function carregaCreate() {
+        $("#formularios").load("Setores/CarregaCreate");
+    }
+
+    function lista() {
+        $("#lista").load("Setores/Lista");
+    }
+
+</script>
+}
