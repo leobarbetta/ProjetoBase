@@ -1,5 +1,4 @@
 using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoBase.Domain.Entities;
 using ProjetoBase.Service.Interfaces;
@@ -16,17 +15,14 @@ namespace ProjetoBase.Controllers
             _setorService = setorService;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        [HttpGet]
+        public IActionResult Index() => View();
 
-        public IActionResult CarregaCreate()
-        {
-            return PartialView("_Create");
-        }
+        [HttpGet]
+        public IActionResult CarregaCreate() => PartialView("_Create");
 
-        public JsonResult Create(CreateSetorViewModel viewModel)
+        [HttpPost]
+        public IActionResult Create(CreateSetorViewModel viewModel)
         {
             Setor setor = Mapper.Map<Setor>(viewModel);
 
@@ -36,6 +32,7 @@ namespace ProjetoBase.Controllers
                 return Json(new { MensagemErro = "Erro ao adicionar setor" });
         }
 
+        [HttpGet]
         public IActionResult Lista()
         {
             List<ViewSetorViewModel> viewModels = Mapper.Map<List<ViewSetorViewModel>>(_setorService.Select());

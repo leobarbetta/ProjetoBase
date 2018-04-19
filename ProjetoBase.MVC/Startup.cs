@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Serialization;
 using ProjetoBase.Persistence.Entity.Context;
 using ProjetoBase.Repository.Entities;
 using ProjetoBase.Repository.Interfaces;
@@ -24,7 +25,11 @@ namespace ProjetoBase
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper();
-            services.AddMvc();
+            services.AddMvc()
+                    .AddJsonOptions(options =>
+                    {
+                        options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                    });
 
             string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=ProjetoBaseCore;Integrated Security=True;user id=Teste; password=Teste;";
             services.AddDbContext<ProjetoBaseCoreDbContext>(optionBuilder =>

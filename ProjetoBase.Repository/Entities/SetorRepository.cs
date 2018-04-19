@@ -16,10 +16,10 @@ namespace ProjetoBase.Repository.Entities
         }
 
         public List<Setor> SelectByPessoa(int pessoaId)
-        {
+        {            
             return _context.Set<Setor>()
                             .Where(p => p.Nome == "Teste")
-                            .ToList();
+                            .ToList();            
         }
     }
 }

@@ -38,11 +38,11 @@
             datatype: "json",
             success: function (data) {
                 console.log(data)
-                if (data.mensagemSucesso != undefined) {
+                if (data.MensagemSucesso != undefined) {
                     lista();
-                    $("#mensagem").html(data.mensagemSucesso);
+                    $("#mensagem").html(data.MensagemSucesso);
                 } else {
-                    $("#mensagem").html(data.mensagemErro);
+                    $("#mensagem").html(data.MensagemErro);
                 }
             }
         });
