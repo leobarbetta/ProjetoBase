@@ -9,6 +9,7 @@ namespace ProjetoBase.AutoMapper
         public ViewModelToDomainProfile()
         {
             CreateMap<CreateSetorViewModel, Setor>();
+            CreateMap<UpdateSetorViewModel, Setor>();
         }
     }
 }

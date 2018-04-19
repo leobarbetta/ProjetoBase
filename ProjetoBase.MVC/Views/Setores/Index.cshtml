@@ -40,6 +40,27 @@
                 console.log(data)
                 if (data.MensagemSucesso != undefined) {
                     lista();
+                    $("#formularios").html("");
+                    $("#mensagem").html(data.MensagemSucesso);
+                } else {
+                    $("#mensagem").html(data.MensagemErro);
+                }
+            }
+        });
+    }
+
+    function updateSetor() {
+        var objeto = $("#formUpdate").serialize();
+        $.ajax({
+            url: "Setores/Update",
+            type: "POST",
+            data: objeto,
+            datatype: "json",
+            success: function (data) {
+                console.log(data)
+                if (data.MensagemSucesso != undefined) {
+                    lista();
+                    $("#formularios").html("");
                     $("#mensagem").html(data.MensagemSucesso);
                 } else {
                     $("#mensagem").html(data.MensagemErro);
@@ -50,6 +71,10 @@
 
     function carregaCreate() {
         $("#formularios").load("Setores/CarregaCreate");
+    }
+
+    function carregaUpdate(id) {
+        $("#formularios").load("Setores/CarregaUpdate/" + id);
     }
 
     function lista() {

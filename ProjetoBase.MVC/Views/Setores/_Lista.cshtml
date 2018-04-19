@@ -24,7 +24,9 @@ else
                 <th>
                     @Html.DisplayNameFor(model => model.IsAtivo)
                 </th>
-                <th></th>
+                <th>
+                    Editar
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -43,6 +45,11 @@ else
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.IsAtivo)
+                    </td>
+                    <td>
+                        <button type="button" onclick="carregaUpdate(@item.SetorId)">
+                            Editar
+                        </button>
                     </td>
                 </tr>
             }

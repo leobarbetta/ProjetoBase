@@ -1,30 +1,39 @@
 ﻿@model ProjetoBase.ViewModel.UpdateSetorViewModel
-
 <hr />
 <div class="row">
-    <div class="col-md-12">
-        <form asp-action="_Update">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Sigla" class="control-label"></label>
-                <input asp-for="Sigla" class="form-control" />
-                <span asp-validation-for="Sigla" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="IsAtivo" /> @Html.DisplayNameFor(model => model.IsAtivo)
-                    </label>
+    <form id="formUpdate">
+        <input asp-for="SetorId" type="hidden" />
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="Nome" class="control-label"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="Sigla" class="control-label"></label>
+                    <input asp-for="Sigla" class="form-control" />
+                    <span asp-validation-for="Sigla" class="text-danger"></span>
+                </div>
             </div>
-        </form>
-    </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input asp-for="IsAtivo" /> @Html.DisplayNameFor(model => model.IsAtivo)
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input type="button" value="Update" onclick="updateSetor()" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
