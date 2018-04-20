@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace ProjetoBase.ViewModel
+namespace ProjetoBase.ViewModel.Setor
 {
     public class CreateSetorViewModel
     {

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using ProjetoBase.Domain.Entities;
-using ProjetoBase.ViewModel;
+using ProjetoBase.Domain;
+using ProjetoBase.ViewModel.Setor;
 
 namespace ProjetoBase.AutoMapper
 {

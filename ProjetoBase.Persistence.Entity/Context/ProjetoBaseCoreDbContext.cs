@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProjetoBase.Domain.Entities;
+using ProjetoBase.Domain;
 using ProjetoBase.Persistence.Entity.Configuration;
 
 namespace ProjetoBase.Persistence.Entity.Context

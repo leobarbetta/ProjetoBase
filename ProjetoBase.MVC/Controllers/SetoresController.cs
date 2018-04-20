@@ -1,8 +1,9 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using ProjetoBase.Domain.Entities;
+using ProjetoBase.Domain;
+using ProjetoBase.Extensions.Common;
 using ProjetoBase.Service.Interfaces;
-using ProjetoBase.ViewModel;
+using ProjetoBase.ViewModel.Setor;
 using System.Collections.Generic;
 
 namespace ProjetoBase.Controllers
@@ -24,7 +25,15 @@ namespace ProjetoBase.Controllers
         [HttpPost]
         public IActionResult Create(CreateSetorViewModel viewModel)
         {
+            if (!ModelState.IsValid)
+                return Json(new { MensagemErro = ModelState.DisplayErros() });
+
             Setor setor = Mapper.Map<Setor>(viewModel);
+
+            List<StatusValidacaoEnum> status = _setorService.ValidaSetor(setor);
+
+            if (status.Count > 0)
+                return Json(new { MensagemErro = status.DisplayDescriptionsToViewModel() });
 
             if (_setorService.Insert(setor))
                 return Json(new { MensagemSucesso = "Setor incluso com sucesso" });
@@ -48,7 +57,15 @@ namespace ProjetoBase.Controllers
         [HttpPost]
         public IActionResult Update(UpdateSetorViewModel viewModel)
         {
+            if (!ModelState.IsValid)
+                return Json(new { MensagemErro = ModelState.DisplayErros() });
+
             Setor setor = Mapper.Map<Setor>(viewModel);
+
+            List<StatusValidacaoEnum> status = _setorService.ValidaSetor(setor);
+
+            if (status.Count > 0)
+                return Json(new { MensagemErro = status.DisplayDescriptionsToViewModel() });
 
             if (_setorService.Update(setor))
                 return Json(new { MensagemSucesso = "Setor atualizado com sucesso" });

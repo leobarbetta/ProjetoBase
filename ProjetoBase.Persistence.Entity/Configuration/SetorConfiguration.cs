@@ -1,7 +1,7 @@
-﻿using ProjetoBase.Persistence.Entity.TemplateConfiguration;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ProjetoBase.Domain.Entities;
+using ProjetoBase.Domain;
+using ProjetoBase.Persistence.Entity.TemplateConfiguration;
 
 namespace ProjetoBase.Persistence.Entity.Configuration
 {

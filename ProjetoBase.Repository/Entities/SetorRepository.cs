@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using ProjetoBase.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjetoBase.Domain;
 using ProjetoBase.Repository.Base;
 using ProjetoBase.Repository.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ProjetoBase.Repository.Entities
 {

@@ -1,4 +1,4 @@
-﻿using ProjetoBase.Domain.Entities;
+﻿using ProjetoBase.Domain;
 using ProjetoBase.Repository.Base;
 using System.Collections.Generic;
 

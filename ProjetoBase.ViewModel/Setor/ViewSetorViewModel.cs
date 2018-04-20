@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ProjetoBase.ViewModel
+namespace ProjetoBase.ViewModel.Setor
 {
     public class ViewSetorViewModel
     {

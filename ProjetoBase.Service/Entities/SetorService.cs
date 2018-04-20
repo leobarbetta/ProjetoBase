@@ -1,7 +1,9 @@
-﻿using ProjetoBase.Domain.Entities;
+﻿using ProjetoBase.Domain;
 using ProjetoBase.Repository.Interfaces;
 using ProjetoBase.Service.Base;
 using ProjetoBase.Service.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ProjetoBase.Service.Entities
 {
@@ -13,9 +15,24 @@ namespace ProjetoBase.Service.Entities
             _setorRepository = repository;
         }
 
-        public bool ValidaSetor(Setor setor)
+        public List<StatusValidacaoEnum> ValidaSetor(Setor setor)
         {
-            return _setorRepository.Select(p => p.Nome == setor.Nome).Count > 0;
+            List<StatusValidacaoEnum> valida = new List<StatusValidacaoEnum>();
+
+            Setor validaSetor = new Setor();
+
+            validaSetor = _setorRepository.Select(p => p.Nome.ToUpper().Trim() == setor.Nome.ToUpper().Trim()).FirstOrDefault();
+
+            if ((validaSetor != null) && (validaSetor.SetorId != setor.SetorId))
+                valida.Add(StatusValidacaoEnum.NomeExistente);
+
+
+            validaSetor = _setorRepository.Select(p => p.Sigla.ToUpper().Trim() == setor.Sigla.ToUpper().Trim()).FirstOrDefault();
+
+            if ((validaSetor != null) && (validaSetor.SetorId != setor.SetorId))
+                valida.Add(StatusValidacaoEnum.SiglaExistente);
+
+            return valida;
         }
     }
 }
