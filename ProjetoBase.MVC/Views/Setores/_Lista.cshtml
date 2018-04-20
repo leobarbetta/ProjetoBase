@@ -6,13 +6,11 @@
 }
 else
 {
-
-    <table class="table">
+    <table class="table table-condensed table-hover">
         <thead>
             <tr>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.SetorId)
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.IsAtivo)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Nome)
@@ -20,11 +18,7 @@ else
                 <th>
                     @Html.DisplayNameFor(model => model.Sigla)
                 </th>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.IsAtivo)
-                </th>
-                <th>
+                <th class="text-center">
                     Editar
                 </th>
             </tr>
@@ -33,9 +27,15 @@ else
             @foreach (var item in Model)
             {
                 <tr>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SetorId)
+                    <td class="text-center">
+                        @if (item.IsAtivo)
+                        {
+                            <span class="fa fa-2x fa-check"></span>
+                        }
+                        else
+                        {
+                            <span class="fa fa-2x fa-times"></span>
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Nome)
@@ -43,13 +43,8 @@ else
                     <td>
                         @Html.DisplayFor(modelItem => item.Sigla)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IsAtivo)
-                    </td>
-                    <td>
-                        <button type="button" onclick="carregaUpdate(@item.SetorId)">
-                            Editar
-                        </button>
+                    <td class="text-center">
+                        <i onclick="carregaUpdate(@item.SetorId)" class="fa fa-2x fa-pencil blue-color"></i>
                     </td>
                 </tr>
             }

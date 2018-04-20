@@ -1,9 +1,11 @@
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Setores";
 }
-<h2>Setores</h2>
+<div class="text-center">
+    <h2>Setores</h2>
+</div>
 
-<button type="button" class="btn btn-primary" onclick="carregaCreate()">Criar novo setor</button>
+<button type="button" class="btn btn-add-new" onclick="carregaCreate()">Criar novo setor</button>
 
 <div class="row">
     <div class="col-lg-12">
@@ -22,64 +24,76 @@
         <div id="lista"></div>
     </div>
 </div>
-
+@*<div class="row">
+        <div class="col-md-12">
+            <div id='preloader_1'><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+    </div>*@
 @section scripts{
-<script>
-    $(document).ready(function () {
-        lista()
-    });
-
-    function createSetor() {
-        var objeto = $("#formCreate").serialize();
-        $.ajax({
-            url: "Setores/Create",
-            type: "POST",
-            data: objeto,
-            datatype: "json",
-            success: function (data) {
-                console.log(data)
-                if (data.MensagemSucesso != undefined) {
-                    lista();
-                    $("#formularios").html("");
-                    $("#mensagem").html(data.MensagemSucesso);
-                } else {
-                    $("#mensagem").html(data.MensagemErro);
-                }
-            }
+    <script>
+        $(document).ready(function () {
+            lista()
         });
-    }
 
-    function updateSetor() {
-        var objeto = $("#formUpdate").serialize();
-        $.ajax({
-            url: "Setores/Update",
-            type: "POST",
-            data: objeto,
-            datatype: "json",
-            success: function (data) {
-                console.log(data)
-                if (data.MensagemSucesso != undefined) {
-                    lista();
-                    $("#formularios").html("");
-                    $("#mensagem").html(data.MensagemSucesso);
-                } else {
-                    $("#mensagem").html(data.MensagemErro);
+        function createSetor() {
+            var objeto = $("#formCreate").serialize();
+            $.ajax({
+                url: "Setores/Create",
+                type: "POST",
+                data: objeto,
+                datatype: "json",
+                success: function (data) {
+                    console.log(data)
+                    if (data.MensagemSucesso != undefined) {
+                        lista();
+                        $("#formularios").html("");
+                        $("#mensagem").html(data.MensagemSucesso);
+                    } else {
+                        $("#mensagem").html(data.MensagemErro);
+                    }
                 }
-            }
-        });
-    }
+            });
+        }
 
-    function carregaCreate() {
-        $("#formularios").load("Setores/CarregaCreate");
-    }
 
-    function carregaUpdate(id) {
-        $("#formularios").load("Setores/CarregaUpdate/" + id);
-    }
+        function updateSetor() {
+            var objeto = $("#formUpdate").serialize();
+            $.ajax({
+                url: "Setores/Update",
+                type: "POST",
+                data: objeto,
+                datatype: "json",
+                success: function (data) {
+                    console.log(data)
+                    if (data.MensagemSucesso != undefined) {
+                        lista();
+                        $("#formularios").html("");
+                        $("#mensagem").html(data.MensagemSucesso);
+                    } else {
+                        $("#mensagem").html(data.MensagemErro);
+                    }
+                }
+            });
+        }
 
-    function lista() {
-        $("#lista").load("Setores/Lista");
-    }
+        function escrevePreLoader(elementoId) {
+            $(elementoId).html("<div id='preloader_1'><span></span><span></span><span></span><span></span><span></span></div>")
+        }
 
-</script>
+        function carregaCreate() {
+            escrevePreLoader("#formularios");
+            $("#formularios").load("Setores/CarregaCreate");
+        }
+
+        function carregaUpdate(id) {
+            escrevePreLoader("#formularios");
+            $("#formularios").load("Setores/CarregaUpdate/" + id);
+        }
+
+        function lista() {
+            escrevePreLoader("#lista");
+            $("#lista").load("setores/lista");
+        }
+
+    </script>
 }
