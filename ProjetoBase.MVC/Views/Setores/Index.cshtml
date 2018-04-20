@@ -5,30 +5,24 @@
     <h2>Setores</h2>
 </div>
 
-<button type="button" class="btn btn-add-new" onclick="carregaCreate()">Criar novo setor</button>
-
-<div class="row">
-    <div class="col-lg-12">
-        <div id="mensagem"></div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-12">
-        <div id="formularios"></div>
-    </div>
-</div>
+<button type="button" class="btn btn-add-new" onclick="carregaCreate()" data-toggle="modal" data-target="#myModal">Criar novo setor</button>
 
 <div class="row">
     <div class="col-md-12">
         <div id="lista"></div>
     </div>
 </div>
-@*<div class="row">
-        <div class="col-md-12">
-            <div id='preloader_1'><span></span><span></span><span></span><span></span><span></span></div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="corpoModal"></div>
         </div>
-    </div>*@
+    </div>
+</div>
+
+
+
 @section scripts{
     <script>
         $(document).ready(function () {
@@ -36,63 +30,139 @@
         });
 
         function createSetor() {
+            baseEnviaCreate("Setores/Create", undefined, undefined, function () {
+                lista();
+            })
+        }
+        
+        function updateSetor() {
+            baseEnviaCreate("Setores/Update", undefined, undefined, function () {
+                lista();
+            })
+        }
+
+        function carregaCreate() {
+            escrevePreLoader("#corpoModal");
+            $("#corpoModal").load("Setores/CarregaCreate");
+        }
+
+        function carregaUpdate(id) {
+            escrevePreLoader("#corpoModal");
+            $("#corpoModal").load("Setores/CarregaUpdate/" + id);
+        }
+
+        function lista() {
+            escrevePreLoader("#lista");
+            $("#lista").load("setores/lista");
+        }
+        //FICA NUM ARQUIVO COMMMON
+        function baseEnviaCreate(url, textoBotao, fechaModel, callback) {
             var objeto = $("#formCreate").serialize();
+            var botao = $("#btnCreate");
+            desabilitarBotao(botao);
             $.ajax({
-                url: "Setores/Create",
+                url: url,
                 type: "POST",
                 data: objeto,
                 datatype: "json",
                 success: function (data) {
-                    console.log(data)
+
+                    if (textoBotao == undefined)
+                        habilitarBotao(botao, 'Adicionar');
+                    else
+                        habilitarBotao(botao, textoBotao);
+
                     if (data.MensagemSucesso != undefined) {
-                        lista();
+                        notificaSucesso(data.MensagemSucesso)
                         $("#formularios").html("");
-                        $("#mensagem").html(data.MensagemSucesso);
+
+
+                        if (fechaModel == undefined || fechaModel == false)
+                            $('#myModal').modal('hide')
+
+                        if (callback != undefined)
+                            callback(data);
+
                     } else {
-                        $("#mensagem").html(data.MensagemErro);
+                        notificaFalha(data.MensagemErro)
                     }
                 }
             });
         }
 
-
-        function updateSetor() {
+        function baseEnviaUpdate(url, textoBotao, fechaModel, callback) {
             var objeto = $("#formUpdate").serialize();
+            var botao = $("#btnUpdate");
+            desabilitarBotao(botao);
             $.ajax({
-                url: "Setores/Update",
+                url: url,
                 type: "POST",
                 data: objeto,
                 datatype: "json",
                 success: function (data) {
-                    console.log(data)
+
+                    if (textoBotao == undefined)
+                        habilitarBotao(botao, 'Adicionar');
+                    else
+                        habilitarBotao(botao, textoBotao);
+
                     if (data.MensagemSucesso != undefined) {
-                        lista();
+                        notificaSucesso(data.MensagemSucesso)
                         $("#formularios").html("");
-                        $("#mensagem").html(data.MensagemSucesso);
+
+
+                        if (fechaModel == undefined || fechaModel == false)
+                            $('#myModal').modal('hide')
+
+                        if (callback != undefined)
+                            callback(data);
+
                     } else {
-                        $("#mensagem").html(data.MensagemErro);
+                        notificaFalha(data.MensagemErro)
                     }
                 }
             });
+        }
+
+        function desabilitarBotao(botao) {
+            botao.attr('disabled', 'disabled');
+            botao.html('Enviando...');
+        }
+
+        function habilitarBotao(botao, textoBotao) {
+            botao.removeAttr('disabled');
+            botao.html(textoBotao);
         }
 
         function escrevePreLoader(elementoId) {
             $(elementoId).html("<div id='preloader_1'><span></span><span></span><span></span><span></span><span></span></div>")
         }
 
-        function carregaCreate() {
-            escrevePreLoader("#formularios");
-            $("#formularios").load("Setores/CarregaCreate");
+        function notificaSucesso(texto) {
+            new PNotify({
+                title: 'Sucesso!',
+                text: texto,
+                styling: "bootstrap3",
+                type: 'success'
+            });
         }
 
-        function carregaUpdate(id) {
-            escrevePreLoader("#formularios");
-            $("#formularios").load("Setores/CarregaUpdate/" + id);
+        function notificaFalha(texto) {
+            new PNotify({
+                title: 'Falha!',
+                text: texto,
+                styling: "bootstrap3",
+                type: 'error'
+            });
         }
 
-        function lista() {
-            escrevePreLoader("#lista");
-            $("#lista").load("setores/lista");
+        function notificaInfo(texto) {
+            new PNotify({
+                title: 'Aviso!',
+                text: texto,
+                styling: "bootstrap3",
+                type: 'info'
+            });
         }
 
     </script>

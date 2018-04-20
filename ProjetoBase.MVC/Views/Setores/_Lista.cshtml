@@ -44,7 +44,7 @@ else
                         @Html.DisplayFor(modelItem => item.Sigla)
                     </td>
                     <td class="text-center">
-                        <i onclick="carregaUpdate(@item.SetorId)" class="fa fa-2x fa-pencil blue-color"></i>
+                        <i onclick="carregaUpdate(@item.SetorId)" class="fa fa-2x fa-pencil blue-color" data-toggle="modal" data-target="#myModal"></i>
                     </td>
                 </tr>
             }

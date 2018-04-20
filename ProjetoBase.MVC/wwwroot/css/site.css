@@ -14,6 +14,38 @@
     }
 }
 
+.ui-pnotify {    
+    top: 60px;
+}
+
+/*INICIO MODAL*/
+.modal-header {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none !important;
+    margin-bottom: 0;
+}
+
+    .modal-header h4 {
+        font-weight: bold !important;
+        font-size: 1.8em;
+    }
+
+.modal-dialog {
+    width: 70% !important;
+}
+
+.modal-body {
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+}
+
+.modal-content {
+    padding: 20px;
+}
+/*FIM MODAL*/
+
 /*Padrão de cores do sistema*/
 .blue-color {
     color: #248ecc;

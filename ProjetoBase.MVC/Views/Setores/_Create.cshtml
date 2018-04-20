@@ -1,38 +1,48 @@
 ﻿@model ProjetoBase.ViewModel.Setor.CreateSetorViewModel
-<hr />
-<div class="row">
-    <form id="formCreate">
-        <div class="col-md-12">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label asp-for="Nome" class="control-label"></label>
-                    <input asp-for="Nome" class="form-control" />
-                    <span asp-validation-for="Nome" class="text-danger"></span>
-                </div>
-            </div>
 
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label asp-for="Sigla" class="control-label"></label>
-                    <input asp-for="Sigla" class="form-control" />
-                    <span asp-validation-for="Sigla" class="text-danger"></span>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+    <h4 class="modal-title">Adicionar setor</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <form id="formCreate">
+
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Nome" class="control-label"></label>
+                        <input asp-for="Nome" class="form-control" />
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input asp-for="IsAtivo" /> @Html.DisplayNameFor(model => model.IsAtivo)
-                        </label>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Sigla" class="control-label"></label>
+                        <input asp-for="Sigla" class="form-control" />
+                        <span asp-validation-for="Sigla" class="text-danger"></span>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-3">
-                <div class="form-group">
-                    <input type="button" value="Adicionar" onclick="createSetor()" class="btn btn-default" />
+            <div class="col-md-12">
+                <div class="funkyradio">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="funkyradio-success">
+                                <input type='checkbox' checked asp-for="IsAtivo" />
+                                <label asp-for="IsAtivo"></label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
+
+        </form>
+    </div>
 </div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+    <input type="button" id="btnCreate" value="Adicionar" onclick="createSetor()" class="btn btn-default" />
+</div>    
