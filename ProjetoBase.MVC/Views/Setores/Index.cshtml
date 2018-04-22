@@ -34,7 +34,7 @@
                 lista();
             })
         }
-        
+
         function updateSetor() {
             baseEnviaCreate("Setores/Update", undefined, undefined, function () {
                 lista();
@@ -53,9 +53,30 @@
 
         function lista() {
             escrevePreLoader("#lista");
-            $("#lista").load("setores/lista");
+            $("#lista").load("setores/lista", function () {
+                carregaDataTable('#tableSetores')
+            });
         }
         //FICA NUM ARQUIVO COMMMON
+        function carregaDataTable(id) {
+            return $(document).ready(function () {
+                $(id).DataTable({
+                    "language": {
+                        "paginate": {
+                            "first": "Primeiro",
+                            "last": "Último",
+                            "next": "Pr&#243;ximo",
+                            "previous": "Anterior"
+                        },
+                        "search": "Busque:",
+                        "info": "",
+                        "lengthMenu": "Exibindo _MENU_ registros",
+                    },
+                    "lengthMenu": [[15, 50, 100, -1], [15, 50, 100, "Todos"]]
+                });
+            });
+        }
+
         function baseEnviaCreate(url, textoBotao, fechaModel, callback) {
             var objeto = $("#formCreate").serialize();
             var botao = $("#btnCreate");
