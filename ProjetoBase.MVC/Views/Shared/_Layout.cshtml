@@ -7,7 +7,9 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/lib/pnotify/dist/pnotify.css" />
+
+        <link href="~/lib/pnotify/dist/pnotify.custom.min.css" rel="stylesheet" />
+
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="stylesheet" href="~/css/componentes.css" />
         <link rel="stylesheet" href="~/lib/datatables/media/css/dataTables.bootstrap.css" />
@@ -16,7 +18,7 @@
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/lib/pnotify/dist/pnotify.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/lib/pnotify/dist/pnotify.custom.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/componentes.css" asp-append-version="true" />
@@ -49,11 +51,17 @@
     </div>
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/pnotify/dist/pnotify.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/lib/datatables/media/js/jquery.dataTables.js"></script>
         <script src="~/lib/datatables/media/js/dataTables.bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
+
+        <script src="~/lib/pnotify/dist/pnotify.custom.min.js"></script>
+
+        <script src="~/js/Common/preloader.js"></script>
+        <script src="~/js/Common/notificacao.js"></script>
+        <script src="~/js/Common/dataTable.js"></script>
+        <script src="~/js/Common/botao.js"></script>
+        <script src="~/js/Common/crudBase.js"></script>
     </environment>
 
     <environment exclude="Development">
@@ -69,10 +77,16 @@
                 crossorigin="anonymous"
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
         </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-        <script src="~/lib/pnotify/dist/pnotify.js" asp-append-version="true"></script>
         <script src="~/lib/datatables/media/js/jquery.dataTables.js" asp-append-version="true"></script>
         <script src="~/lib/datatables/media/js/dataTables.bootstrap.js" asp-append-version="true"></script>
+
+        <script src="~/lib/pnotify/dist/pnotify.custom.min.js" asp-append-version="true"></script>
+
+        <script src="~/js/Common/preloader.js" asp-append-version="true"></script>
+        <script src="~/js/Common/notificacao.js" asp-append-version="true"></script>
+        <script src="~/js/Common/dataTable.js" asp-append-version="true"></script>
+        <script src="~/js/Common/botao.js" asp-append-version="true"></script>
+        <script src="~/js/Common/crudBase.js" asp-append-version="true"></script>
     </environment>
     @RenderSection("Scripts", required: false)
 </body>

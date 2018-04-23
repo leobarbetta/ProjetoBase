@@ -7,7 +7,7 @@
     "jquery-validation": "1.14.0",
     "jquery-validation-unobtrusive": "3.2.6",
     "font-awesome": "Font-Awesome#v4.1.0",
-    "pnotify": "3.2.1",
+    "pnotify": "pines-notify#3.2.1",
     "datatables": "datatable#1.10.16"
   }
 }
