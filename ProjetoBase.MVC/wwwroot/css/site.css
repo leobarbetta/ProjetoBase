@@ -14,7 +14,7 @@
     }
 }
 
-.ui-pnotify {    
+.ui-pnotify {
     top: 60px;
 }
 
@@ -70,7 +70,8 @@ td i {
     color: #fff;
     background-color: #317500;
     border-color: #317500;
-    float: right
+    float: right;
+    margin-bottom: 10px;
 }
 /*FIM BOTAO*/
 
