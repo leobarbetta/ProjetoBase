@@ -5,7 +5,7 @@ namespace ProjetoBase.Persistence.Entity.Context
 {
     class ContextFactory : IDesignTimeDbContextFactory<ProjetoBaseCoreDbContext>
     {
-        private const string CONNECTIONSTRING = @"Data Source=.\SQLEXPRESS;Initial Catalog=ProjetoBaseCore;Integrated Security=True;user id=Teste; password=Teste;";
+        private const string CONNECTIONSTRING = @"Data Source=.\SQLEXPRESS;Initial Catalog=ProjetoBaseCore;Integrated Security=SSPI;";
 
         public ProjetoBaseCoreDbContext CreateDbContext(string[] args)
         {

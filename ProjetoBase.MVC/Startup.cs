@@ -31,7 +31,7 @@ namespace ProjetoBase
                         options.SerializerSettings.ContractResolver = new DefaultContractResolver();
                     });
 
-            string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=ProjetoBaseCore;Integrated Security=True;user id=Teste; password=Teste;";
+            string connectionString = Configuration.GetConnectionString("ProjetoBaseCoreDbContext");
             services.AddDbContext<ProjetoBaseCoreDbContext>(optionBuilder =>
             {
                 optionBuilder.UseSqlServer(connectionString);
